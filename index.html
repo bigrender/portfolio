@@ -363,23 +363,21 @@
   <p class="subtitle" id="header-subtitle">React · Next.js · Node.js · Cloudflare Workers · Gemini AI</p>
   <div class="header-tags">
     <span class="header-tag">Remote / Freelance</span>
-    <span class="header-tag">Thailand 🇹🇭</span>
     <span class="header-tag">법인사업자</span>
     <span class="header-tag">1yr+ Experience</span>
-    <span class="header-tag">10 MVPs in 1 day</span>
   </div>
   <div class="stats-row">
     <div class="stat">
-      <div class="stat-num">10</div>
-      <div class="stat-label" id="stat-mvp">MVPs Built</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">10+</div>
-      <div class="stat-label" id="stat-proposals">Projects</div>
+      <div class="stat-num">12+</div>
+      <div class="stat-label" id="stat-mvp">Projects</div>
     </div>
     <div class="stat">
       <div class="stat-num">AI</div>
-      <div class="stat-label" id="stat-focus">Core Focus</div>
+      <div class="stat-label" id="stat-proposals">Core Focus</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Full</div>
+      <div class="stat-label" id="stat-focus">Stack</div>
     </div>
   </div>
 </header>
@@ -425,20 +423,20 @@
             <div style="font-size:0.75rem;">github.com/smoh-dev</div>
           </div>
         </a>
-        <a class="contact-link" href="mailto:smoh.dev@gmail.com">
+        <a class="contact-link" href="mailto:kula9055@gmail.com">
           <span class="contact-icon">📧</span>
           <div>
             <div style="color:#fff;font-weight:600;">Email</div>
-            <div style="font-size:0.75rem;">smoh.dev@gmail.com</div>
+            <div style="font-size:0.75rem;">kula9055@gmail.com</div>
           </div>
         </a>
-        <div class="contact-link">
-          <span class="contact-icon">📍</span>
+        <a class="contact-link" href="https://open.kakao.com/o/placeholder" target="_blank" id="kakao-link">
+          <span class="contact-icon">💬</span>
           <div>
-            <div style="color:#fff;font-weight:600;" id="location-title">Location</div>
-            <div style="font-size:0.75rem;" id="location-val">Bangkok, Thailand (Remote OK)</div>
+            <div style="color:#fff;font-weight:600;" id="kakao-title">KakaoTalk</div>
+            <div style="font-size:0.75rem;" id="kakao-desc">오픈채팅으로 연락하기</div>
           </div>
-        </div>
+        </a>
         <div class="contact-link">
           <span class="contact-icon">🏢</span>
           <div>
@@ -447,7 +445,7 @@
           </div>
         </div>
         <div class="contact-link">
-          <span class="contact-icon">💬</span>
+          <span class="contact-icon">🔗</span>
           <div>
             <div style="color:#fff;font-weight:600;">Wishket / Freemoa</div>
             <div style="font-size:0.75rem;">상위 프리랜서</div>
@@ -739,20 +737,72 @@ const PROJECTS = [
       },
     },
   },
+  {
+    id: '11',
+    img: 'images/cenema-main.png',
+    tags: ['React', 'Vite', 'Cloudflare Workers', 'Gemini AI', 'Kling API', 'Hono'],
+    accentTags: ['Gemini AI', 'Kling API'],
+    budget: 'Personal Project',
+    duration: { ko: '진행중', en: 'Ongoing', ja: '進行中', th: 'กำลังพัฒนา' },
+    i18n: {
+      ko: {
+        title: 'AI 오토영상 생성 플랫폼 (Cenema)',
+        desc: '원클릭/에이전트/바이럴분석/유저모드 4가지 워크플로우를 갖춘 AI 영상 자동화 스튜디오. Gemini로 시나리오 생성 → Kling API로 영상 클립 생성 → 자동 조립. Cloudflare Workers + Hono 백엔드.',
+      },
+      en: {
+        title: 'AI Auto-Video Generation Platform (Cenema)',
+        desc: 'AI video automation studio with 4 workflows: One-Click, Agent, Viral Analysis, User Mode. Gemini generates scenarios → Kling API creates video clips → auto-assembly. Cloudflare Workers + Hono backend.',
+      },
+      ja: {
+        title: 'AI自動動画生成プラットフォーム（Cenema）',
+        desc: 'ワンクリック/エージェント/バイラル分析/ユーザーモードの4ワークフローを持つAI動画自動化スタジオ。Geminiでシナリオ生成 → Kling APIで動画クリップ生成 → 自動アセンブリ。',
+      },
+      th: {
+        title: 'แพลตฟอร์มสร้างวิดีโออัตโนมัติด้วย AI (Cenema)',
+        desc: 'สตูดิโออัตโนมัติวิดีโอ AI มี 4 โหมด: คลิกเดียว, เอเจนต์, วิเคราะห์ไวรัล, โหมดผู้ใช้ Gemini สร้างสคริปต์ → Kling API สร้างคลิป → ประกอบอัตโนมัติ',
+      },
+    },
+  },
+  {
+    id: '12',
+    img: 'images/12-shield-agent.png',
+    tags: ['Python', 'FastAPI', 'AI Agent', 'Security', 'React', 'TypeScript'],
+    accentTags: ['AI Agent', 'Security'],
+    budget: 'Business Project',
+    duration: { ko: '진행중', en: 'Ongoing', ja: '進行中', th: 'กำลังพัฒนา' },
+    i18n: {
+      ko: {
+        title: 'Shield Agent — AI 보안 사업 플랫폼',
+        desc: 'AI 기반 보안 에이전트 플랫폼. 자동화된 위협 탐지, 취약점 스캔, 보안 이벤트 분석 파이프라인. FastAPI 백엔드 + React 대시보드 + AI 에이전트 오케스트레이션.',
+      },
+      en: {
+        title: 'Shield Agent — AI Security Business Platform',
+        desc: 'AI-powered security agent platform. Automated threat detection, vulnerability scanning, and security event analysis pipeline. FastAPI backend + React dashboard + AI agent orchestration.',
+      },
+      ja: {
+        title: 'Shield Agent — AIセキュリティビジネスプラットフォーム',
+        desc: 'AIベースのセキュリティエージェントプラットフォーム。自動脅威検出、脆弱性スキャン、セキュリティイベント分析パイプライン。FastAPIバックエンド + Reactダッシュボード。',
+      },
+      th: {
+        title: 'Shield Agent — แพลตฟอร์มธุรกิจความปลอดภัย AI',
+        desc: 'แพลตฟอร์ม AI Agent ด้านความปลอดภัย ตรวจจับภัยคุกคาม สแกนช่องโหว่ และวิเคราะห์เหตุการณ์ความปลอดภัยอัตโนมัติ FastAPI + React Dashboard',
+      },
+    },
+  },
 ];
 
 const I18N = {
   ko: {
     headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
-    statMvp: '하루에 만든 MVP',
-    statProposals: '프로젝트 총합',
-    statFocus: '핵심 분야',
+    statMvp: '총 프로젝트',
+    statProposals: '핵심 분야',
+    statFocus: '풀스택',
     sectionProjects: '프로젝트 포트폴리오',
     sectionSkills: '기술 스택 & 연락처',
     skillsTitle: '기술 스택',
     contactTitle: '연락처',
-    locationTitle: '위치',
-    locationVal: '방콕, 태국 (원격 가능)',
+    kakaoTitle: 'KakaoTalk',
+    kakaoDesc: '오픈채팅으로 연락하기',
     bizTitle: '사업자',
     bizVal: '법인사업자 + 개인사업자',
     footerText: '❤️ 로 만든 포트폴리오 · Fullstack AI Developer · 2026',
@@ -761,15 +811,15 @@ const I18N = {
   },
   en: {
     headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
-    statMvp: 'MVPs in 1 Day',
-    statProposals: 'Total Proposals',
-    statFocus: 'Core Focus',
+    statMvp: 'Total Projects',
+    statProposals: 'Core Focus',
+    statFocus: 'Full Stack',
     sectionProjects: 'Project Portfolio',
     sectionSkills: 'Skills & Contact',
     skillsTitle: 'Tech Stack',
     contactTitle: 'Contact',
-    locationTitle: 'Location',
-    locationVal: 'Bangkok, Thailand (Remote OK)',
+    kakaoTitle: 'KakaoTalk',
+    kakaoDesc: 'Open Chat',
     bizTitle: 'Business',
     bizVal: 'Corporation + Individual Business',
     footerText: 'Built with ❤️ — Fullstack AI Developer Portfolio · 2026',
@@ -778,15 +828,15 @@ const I18N = {
   },
   ja: {
     headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
-    statMvp: '1日で作ったMVP',
-    statProposals: '提案書総額',
-    statFocus: '専門分野',
+    statMvp: '総プロジェクト',
+    statProposals: '専門分野',
+    statFocus: 'フルスタック',
     sectionProjects: 'プロジェクトポートフォリオ',
     sectionSkills: '技術スタック & 連絡先',
     skillsTitle: '技術スタック',
     contactTitle: '連絡先',
-    locationTitle: '所在地',
-    locationVal: 'バンコク、タイ（リモート可）',
+    kakaoTitle: 'KakaoTalk',
+    kakaoDesc: 'オープンチャットで連絡',
     bizTitle: 'ビジネス',
     bizVal: '法人 + 個人事業主',
     footerText: '❤️ で作ったポートフォリオ · Fullstack AI Developer · 2026',
@@ -795,15 +845,15 @@ const I18N = {
   },
   th: {
     headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
-    statMvp: 'MVP ใน 1 วัน',
-    statProposals: 'ยอดรวมข้อเสนอ',
-    statFocus: 'ความเชี่ยวชาญ',
+    statMvp: 'โปรเจกต์ทั้งหมด',
+    statProposals: 'ความเชี่ยวชาญ',
+    statFocus: 'Full Stack',
     sectionProjects: 'ผลงานโครงการ',
     sectionSkills: 'ทักษะ & ติดต่อ',
     skillsTitle: 'เทคโนโลยี',
     contactTitle: 'ติดต่อ',
-    locationTitle: 'ที่ตั้ง',
-    locationVal: 'กรุงเทพฯ, ไทย (ทำงานระยะไกลได้)',
+    kakaoTitle: 'KakaoTalk',
+    kakaoDesc: 'Open Chat',
     bizTitle: 'ธุรกิจ',
     bizVal: 'นิติบุคคล + บุคคลธรรมดา',
     footerText: 'สร้างด้วย ❤️ — Fullstack AI Developer Portfolio · 2026',
@@ -833,8 +883,8 @@ function updateUI() {
   document.getElementById('section-skills').textContent = t.sectionSkills;
   document.getElementById('skills-title').textContent = t.skillsTitle;
   document.getElementById('contact-title').textContent = t.contactTitle;
-  document.getElementById('location-title').textContent = t.locationTitle;
-  document.getElementById('location-val').textContent = t.locationVal;
+  document.getElementById('kakao-title').textContent = t.kakaoTitle;
+  document.getElementById('kakao-desc').textContent = t.kakaoDesc;
   document.getElementById('biz-title').textContent = t.bizTitle;
   document.getElementById('biz-val').textContent = t.bizVal;
   document.getElementById('footer-text').textContent = t.footerText;
