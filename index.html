@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fullstack AI Developer Portfolio</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c28;
+    --border: #2a2a3d;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --accent3: #ff6b6b;
+    --text: #e8e8f0;
+    --text-muted: #8888aa;
+    --text-dim: #555577;
+    --tag-bg: #1e1e30;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d0d1a 0%, #1a0d2e 50%, #0d1a2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(108,99,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .avatar {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 40px rgba(108,99,255,0.4);
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, #a0a0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .header-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .header-tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+  }
+
+  .stats-row {
+    display: flex; gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* LANG SWITCHER */
+  .lang-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .lang-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .lang-btn.active, .lang-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* PROJECTS GRID */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 40px rgba(108,99,255,0.15);
+  }
+
+  .project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: block;
+  }
+
+  .project-body {
+    padding: 16px;
+  }
+
+  .project-number {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .project-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .project-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 12px;
+  }
+  .tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-family: 'Courier New', monospace;
+  }
+  .tag.accent { border-color: var(--accent); color: #a0a0ff; }
+  .tag.green { border-color: var(--accent2); color: var(--accent2); }
+
+  .project-meta {
+    display: none;
+  }
+
+  /* ABOUT SECTION */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.6rem; }
+  }
+
+  .about-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .about-card h3 {
+    font-size: 0.9rem;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .skill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-bar-wrap {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-bar {
+    width: 80px; height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+  }
+  .skill-pct { font-size: 0.72rem; color: var(--text-muted); }
+
+  .contact-links {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .contact-link:hover { background: var(--surface2); color: var(--text); }
+  .contact-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .modal-img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 16px 16px 0 0;
+  }
+  .modal-body { padding: 24px; }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(0,0,0,0.6); border: none;
+    color: #fff; width: 32px; height: 32px;
+    border-radius: 50%; font-size: 18px;
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* i18n hidden */
+  [data-lang] { display: none; }
+  [data-lang].visible { display: block; }
+  .inline-lang { display: none; }
+  .inline-lang.visible { display: inline; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="avatar">⚡</div>
+  <h1>Fullstack AI Developer</h1>
+  <p class="subtitle" id="header-subtitle">React · Next.js · Node.js · Cloudflare Workers · Gemini AI</p>
+  <div class="header-tags">
+    <span class="header-tag">Remote / Freelance</span>
+    <span class="header-tag">Thailand 🇹🇭</span>
+    <span class="header-tag">법인사업자</span>
+    <span class="header-tag">1yr+ Experience</span>
+    <span class="header-tag">10 MVPs in 1 day</span>
+  </div>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">10</div>
+      <div class="stat-label" id="stat-mvp">MVPs Built</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-label" id="stat-proposals">Projects</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">AI</div>
+      <div class="stat-label" id="stat-focus">Core Focus</div>
+    </div>
+  </div>
+</header>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+  <button class="lang-btn" onclick="setLang('en')">English</button>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  <button class="lang-btn" onclick="setLang('th')">ภาษาไทย</button>
+</div>
+
+<!-- PROJECTS SECTION -->
+<div class="section">
+  <div class="section-title" id="section-projects">Projects</div>
+  <div class="projects-grid" id="projects-grid">
+    <!-- Injected by JS -->
+  </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="section">
+  <div class="section-title" id="section-skills">Skills & Contact</div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3 id="skills-title">Tech Stack</h3>
+      <div class="skill-row"><span>React / Next.js</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div><span class="skill-pct">95%</span></div></div>
+      <div class="skill-row"><span>TypeScript</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div><span class="skill-pct">90%</span></div></div>
+      <div class="skill-row"><span>Node.js / Express</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div><span class="skill-pct">88%</span></div></div>
+      <div class="skill-row"><span>Cloudflare Workers</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div><span class="skill-pct">85%</span></div></div>
+      <div class="skill-row"><span>LLM / Gemini AI</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div><span class="skill-pct">90%</span></div></div>
+      <div class="skill-row"><span>PostgreSQL / Redis</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div><span class="skill-pct">82%</span></div></div>
+      <div class="skill-row"><span>React Native</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div><span class="skill-pct">78%</span></div></div>
+      <div class="skill-row"><span>Toss / Kakao Pay</span><div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div><span class="skill-pct">85%</span></div></div>
+    </div>
+    <div class="about-card">
+      <h3 id="contact-title">Contact</h3>
+      <div class="contact-links">
+        <a class="contact-link" href="https://github.com/smoh-dev" target="_blank">
+          <span class="contact-icon">🐙</span>
+          <div>
+            <div style="color:#fff;font-weight:600;">GitHub</div>
+            <div style="font-size:0.75rem;">github.com/smoh-dev</div>
+          </div>
+        </a>
+        <a class="contact-link" href="mailto:smoh.dev@gmail.com">
+          <span class="contact-icon">📧</span>
+          <div>
+            <div style="color:#fff;font-weight:600;">Email</div>
+            <div style="font-size:0.75rem;">smoh.dev@gmail.com</div>
+          </div>
+        </a>
+        <div class="contact-link">
+          <span class="contact-icon">📍</span>
+          <div>
+            <div style="color:#fff;font-weight:600;" id="location-title">Location</div>
+            <div style="font-size:0.75rem;" id="location-val">Bangkok, Thailand (Remote OK)</div>
+          </div>
+        </div>
+        <div class="contact-link">
+          <span class="contact-icon">🏢</span>
+          <div>
+            <div style="color:#fff;font-weight:600;" id="biz-title">Business</div>
+            <div style="font-size:0.75rem;" id="biz-val">법인사업자 + 개인사업자</div>
+          </div>
+        </div>
+        <div class="contact-link">
+          <span class="contact-icon">💬</span>
+          <div>
+            <div style="color:#fff;font-weight:600;">Wishket / Freemoa</div>
+            <div style="font-size:0.75rem;">상위 프리랜서</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" id="modal-inner">
+    <button class="modal-close" onclick="closeModal(null)">✕</button>
+    <img class="modal-img" id="modal-img" src="" alt="">
+    <div class="modal-body">
+      <div class="project-number" id="modal-num"></div>
+      <div class="project-title" style="font-size:1.2rem;margin-bottom:10px;" id="modal-title"></div>
+      <div class="project-desc" id="modal-desc"></div>
+      <div class="project-tags" id="modal-tags"></div>
+      <div class="project-meta" id="modal-meta"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p id="footer-text">Built with ❤️ — Fullstack AI Developer Portfolio · 2026</p>
+</footer>
+
+<script>
+const PROJECTS = [
+  {
+    id: '01',
+    img: 'images/01-nft-drm-archive.png',
+    tags: ['Next.js', 'DRM', 'NFT', 'Watermark', 'TypeScript'],
+    accentTags: ['DRM', 'NFT'],
+    budget: '₩80,000,000',
+    duration: { ko: '150일', en: '150 days', ja: '150日', th: '150 วัน' },
+    i18n: {
+      ko: {
+        title: '한국 전통 예술 NFT/DRM 아카이브 플랫폼',
+        desc: '포렌식 워터마크, DRM, NFT 민팅을 통합한 B2B/B2C 디지털 아카이브 포털. CHAM 브랜드로 한국 전통 예술 자산을 블록체인으로 보호.',
+      },
+      en: {
+        title: 'Korean Traditional Art NFT/DRM Archive Platform',
+        desc: 'B2B/B2C digital archive portal integrating forensic watermarking, DRM, and NFT minting. Protects Korean traditional art assets on blockchain under the CHAM brand.',
+      },
+      ja: {
+        title: '韓国伝統芸術 NFT/DRM アーカイブプラットフォーム',
+        desc: 'フォレンジック電子透かし・DRM・NFTミンティングを統合したB2B/B2Cデジタルアーカイブポータル。CHAMブランドで韓国伝統芸術をブロックチェーンで保護。',
+      },
+      th: {
+        title: 'แพลตฟอร์มอาร์ไคฟ์ NFT/DRM ศิลปะดั้งเดิมเกาหลี',
+        desc: 'พอร์ทัลเก็บถาวรดิจิทัล B2B/B2C ที่รวม Forensic Watermark, DRM และ NFT Minting เพื่อปกป้องทรัพย์สินศิลปะดั้งเดิมเกาหลีบน Blockchain ภายใต้แบรนด์ CHAM',
+      },
+    },
+  },
+  {
+    id: '02',
+    img: 'images/02-ai-character-chat.png',
+    tags: ['Vite', 'Cloudflare Workers', 'Gemini', 'Supabase', 'Hono'],
+    accentTags: ['Cloudflare Workers', 'Gemini'],
+    budget: '₩10,000,000',
+    duration: { ko: '30일', en: '30 days', ja: '30日', th: '30 วัน' },
+    i18n: {
+      ko: {
+        title: 'AI 캐릭터 채팅 플랫폼',
+        desc: 'Cloudflare Edge에서 구동되는 고성능 AI 캐릭터 채팅 플랫폼. Gemini 기반 자연어 응답 + Supabase 실시간 DB + Toss Payments 결제 통합.',
+      },
+      en: {
+        title: 'AI Character Chat Platform',
+        desc: 'High-performance AI character chat platform running on Cloudflare Edge. Natural language responses via Gemini + real-time Supabase DB + Toss Payments integration.',
+      },
+      ja: {
+        title: 'AI キャラクターチャットプラットフォーム',
+        desc: 'Cloudflare Edgeで動作する高性能AIキャラクターチャットプラットフォーム。Gemini自然言語応答 + Supabaseリアルタイムデータベース + Toss決済統合。',
+      },
+      th: {
+        title: 'แพลตฟอร์มแชทตัวละคร AI',
+        desc: 'แพลตฟอร์มแชทตัวละคร AI ประสิทธิภาพสูงที่ทำงานบน Cloudflare Edge พร้อม Gemini, Supabase Realtime และการชำระเงินผ่าน Toss Payments',
+      },
+    },
+  },
+  {
+    id: '03',
+    img: 'images/03-webtoon-translator.png',
+    tags: ['Vite', 'Canvas API', 'LLM', 'MongoDB', 'Node.js'],
+    accentTags: ['LLM'],
+    budget: '₩7,000,000',
+    duration: { ko: '40일', en: '40 days', ja: '40日', th: '40 วัน' },
+    i18n: {
+      ko: {
+        title: '글로벌 웹툰 번역식자 자동화 MVP',
+        desc: 'Canvas 기반 웹툰 패널 편집기. LLM 자동 번역 + 텍스트 박스 드래그/리사이즈 + JSON Export. 다국어 현지화 워크플로우 자동화.',
+      },
+      en: {
+        title: 'Global Webtoon Translation & Typesetting MVP',
+        desc: 'Canvas-based webtoon panel editor with LLM auto-translation, drag/resize text boxes, and JSON export. Automates multilingual localization workflows.',
+      },
+      ja: {
+        title: 'グローバルウェブトゥーン翻訳植字自動化MVP',
+        desc: 'Canvasベースのウェブトゥーンパネルエディタ。LLM自動翻訳 + テキストボックスのドラッグ/リサイズ + JSONエクスポート。多言語ローカライズワークフロー自動化。',
+      },
+      th: {
+        title: 'MVP อัตโนมัติแปลและจัดวางตัวอักษร Webtoon ระดับโลก',
+        desc: 'โปรแกรมแก้ไขแผงภาพ Webtoon บน Canvas พร้อมการแปลอัตโนมัติด้วย LLM, ลาก/ปรับขนาดกล่องข้อความ และส่งออก JSON',
+      },
+    },
+  },
+  {
+    id: '04',
+    img: 'images/04-video-coaching.png',
+    tags: ['React', 'WebRTC', 'Node.js', 'PostgreSQL', 'AI Coaching'],
+    accentTags: ['WebRTC', 'AI Coaching'],
+    budget: '₩20,000,000',
+    duration: { ko: '120일', en: '120 days', ja: '120日', th: '120 วัน' },
+    i18n: {
+      ko: {
+        title: '영상 기반 온라인 학습 코칭 플랫폼',
+        desc: 'WebRTC 실시간 영상 세션 + AI 코칭 요청 기능. 학생/코치/학부모/관리자 멀티롤 지원. 세션 타이머, 카메라 연결, 1:1 코칭 요청 플로우 MVP.',
+      },
+      en: {
+        title: 'Video-Based Online Learning Coaching Platform',
+        desc: 'WebRTC real-time video sessions with AI coaching requests. Multi-role support: Student / Coach / Parent / Admin. Session timer, camera connect, and 1:1 coaching flow MVP.',
+      },
+      ja: {
+        title: '動画ベースオンライン学習コーチングプラットフォーム',
+        desc: 'WebRTCリアルタイム映像セッション＋AIコーチングリクエスト機能。学生/コーチ/保護者/管理者のマルチロール対応。セッションタイマー、カメラ接続、1:1コーチングフローMVP。',
+      },
+      th: {
+        title: 'แพลตฟอร์มโค้ชการเรียนรู้ออนไลน์แบบวิดีโอ',
+        desc: 'เซสชันวิดีโอแบบเรียลไทม์ด้วย WebRTC พร้อมการขอโค้ช AI รองรับหลายบทบาท: นักเรียน/โค้ช/ผู้ปกครอง/แอดมิน',
+      },
+    },
+  },
+  {
+    id: '05',
+    img: 'images/05-phone-middleware.png',
+    tags: ['Node.js', 'WebSocket', 'Redis', 'REST API', 'TypeScript'],
+    accentTags: ['WebSocket'],
+    budget: '₩10,000,000',
+    duration: { ko: '30일', en: '30 days', ja: '30日', th: '30 วัน' },
+    i18n: {
+      ko: {
+        title: '통신 3사 인터넷 전화 연동 미들웨어',
+        desc: 'KT / LG U+ / SKB 3사 통신 어댑터 패턴. WebSocket 실시간 통화 + Bull Queue Redis + REST API. 평균 응답시간 <50ms, 통화 녹취 및 CID 조회.',
+      },
+      en: {
+        title: 'Korean Telecom Triple-Carrier VoIP Middleware',
+        desc: 'Adapter pattern for KT / LG U+ / SKB. WebSocket real-time calls + Bull Queue Redis + REST API. Avg response <50ms with call recording and CID lookup.',
+      },
+      ja: {
+        title: '韓国通信3社VoIPミドルウェア',
+        desc: 'KT / LG U+ / SKBのアダプターパターン。WebSocketリアルタイム通話 + Bull Queue Redis + REST API。平均応答時間<50ms、通話録音とCID照会機能。',
+      },
+      th: {
+        title: 'มิดเดิลแวร์เชื่อมต่อ VoIP ผู้ให้บริการโทรคมนาคม 3 ราย',
+        desc: 'รูปแบบ Adapter สำหรับ KT / LG U+ / SKB พร้อม WebSocket, Redis Queue และ REST API ค่าตอบสนองเฉลี่ย <50ms',
+      },
+    },
+  },
+  {
+    id: '06',
+    img: 'images/06-donor-dashboard.png',
+    tags: ['Python', 'LLM API', 'React', 'Crawling', 'PostgreSQL'],
+    accentTags: ['LLM API'],
+    budget: '₩6,000,000',
+    duration: { ko: '60일', en: '60 days', ja: '60日', th: '60 วัน' },
+    i18n: {
+      ko: {
+        title: '기부자 동향 뉴스 AI 분석 대시보드',
+        desc: '기업 임원 기부자 정보를 자동 크롤링하고 LLM으로 뉴스 감성 분석. 골든타임 점수, 기부 제안 타이밍 추천, CRM 대시보드 통합.',
+      },
+      en: {
+        title: 'Donor Intelligence News AI Analysis Dashboard',
+        desc: 'Auto-crawls corporate donor info and runs LLM sentiment analysis on news. Golden-time scoring, donation proposal timing recommendations, and CRM dashboard integration.',
+      },
+      ja: {
+        title: '寄付者動向ニュースAI分析ダッシュボード',
+        desc: '企業役員寄付者情報を自動クロールし、LLMでニュース感情分析。ゴールデンタイムスコア、寄付提案タイミング推薦、CRMダッシュボード統合。',
+      },
+      th: {
+        title: 'แดชบอร์ดวิเคราะห์ข่าว AI สำหรับผู้บริจาค',
+        desc: 'ดึงข้อมูลผู้บริจาคองค์กรอัตโนมัติและวิเคราะห์ความรู้สึกข่าวด้วย LLM พร้อมคะแนน Golden-time และคำแนะนำเวลาเสนอการบริจาค',
+      },
+    },
+  },
+  {
+    id: '07',
+    img: 'images/07-legal-chatbot.png',
+    tags: ['AI Chatbot', 'React', 'RAG', 'TypeScript', 'Node.js'],
+    accentTags: ['AI Chatbot', 'RAG'],
+    budget: '₩15,000,000',
+    duration: { ko: '90일', en: '90 days', ja: '90日', th: '90 วัน' },
+    i18n: {
+      ko: {
+        title: 'AI 기반 법률 학습 Q&A 챗봇',
+        desc: 'RAG 기반 법령 검색 + 신뢰도 점수 표시 챗봇. 민법/형법 등 법률 과목 학습 지원, 대화 이력 자동 저장, 유용/부족 피드백 기능.',
+      },
+      en: {
+        title: 'AI-Powered Legal Learning Q&A Chatbot',
+        desc: 'RAG-based law retrieval chatbot with confidence scores. Supports law study (civil/criminal law), auto-saves conversation history, and collects helpful/unhelpful feedback.',
+      },
+      ja: {
+        title: 'AI法律学習Q&Aチャットボット',
+        desc: 'RAGベースの法令検索チャットボット（信頼度スコア表示）。民法・刑法等の法律学習支援、会話履歴自動保存、有用/不足フィードバック機能。',
+      },
+      th: {
+        title: 'แชทบอท Q&A การเรียนรู้กฎหมายด้วย AI',
+        desc: 'แชทบอทค้นหากฎหมายแบบ RAG พร้อมคะแนนความเชื่อมั่น รองรับการเรียนกฎหมาย บันทึกประวัติการสนทนาอัตโนมัติ',
+      },
+    },
+  },
+  {
+    id: '08',
+    img: 'images/08-kakao-slack.png',
+    tags: ['Node.js', 'Slack API', 'Kakao API', 'PostgreSQL', 'TypeScript'],
+    accentTags: ['Slack API', 'Kakao API'],
+    budget: '₩5,000,000',
+    duration: { ko: '30일', en: '30 days', ja: '30日', th: '30 วัน' },
+    i18n: {
+      ko: {
+        title: '카카오톡 ↔ Slack 실시간 연동 브릿지',
+        desc: '고객상담 양방향 메시지 동기화. 카카오 비즈메시지 → Slack 채널, Slack → 카카오 실시간 전달 (300ms 이내). 파일/이미지 양방향 전송 + PostgreSQL 이력 저장.',
+      },
+      en: {
+        title: 'KakaoTalk ↔ Slack Real-Time Bridge',
+        desc: 'Bidirectional customer support message sync. KakaoBiz → Slack channel, Slack → KakaoTalk in <300ms. File/image transfer both ways + PostgreSQL conversation history.',
+      },
+      ja: {
+        title: 'カカオトーク ↔ Slack リアルタイム連携ブリッジ',
+        desc: 'カスタマーサポート双方向メッセージ同期。カカオビズメッセージ→Slackチャンネル、Slack→カカオをリアルタイム転送（300ms以内）。ファイル/画像双方向転送 + PostgreSQL履歴保存。',
+      },
+      th: {
+        title: 'บริดจ์เชื่อมต่อแบบเรียลไทม์ KakaoTalk ↔ Slack',
+        desc: 'ซิงค์ข้อความบริการลูกค้าแบบสองทิศทาง KakaoBiz → Slack และ Slack → KakaoTalk ภายใน 300ms พร้อมส่งไฟล์/รูปภาพทั้งสองทาง',
+      },
+    },
+  },
+  {
+    id: '09',
+    img: 'images/09-mes-migration.png',
+    tags: ['Next.js 14', 'React Query v5', 'TypeScript', 'TanStack'],
+    accentTags: ['React Query v5'],
+    budget: '₩1,500,000',
+    duration: { ko: '7일', en: '7 days', ja: '7日', th: '7 วัน' },
+    i18n: {
+      ko: {
+        title: 'MES React Query v3 → v5 마이그레이션',
+        desc: 'Next.js 14 + TypeScript 환경에서 react-query v3 → @tanstack/react-query v5 완전 마이그레이션. API 호환성 100% 유지, 다운타임 0. 7일 완성.',
+      },
+      en: {
+        title: 'MES React Query v3 → v5 Migration',
+        desc: 'Full migration from react-query v3 to @tanstack/react-query v5 in Next.js 14 + TypeScript. 100% API compatibility maintained, zero downtime. 7-day delivery.',
+      },
+      ja: {
+        title: 'MES React Query v3 → v5 マイグレーション',
+        desc: 'Next.js 14 + TypeScript環境でreact-query v3から@tanstack/react-query v5への完全移行。API互換性100%維持、ダウンタイム0。7日間で完成。',
+      },
+      th: {
+        title: 'การย้าย MES React Query v3 → v5',
+        desc: 'ย้ายจาก react-query v3 ไปยัง @tanstack/react-query v5 อย่างสมบูรณ์ใน Next.js 14 + TypeScript รักษา API 100% ไม่มี Downtime ส่งใน 7 วัน',
+      },
+    },
+  },
+  {
+    id: '10',
+    img: 'images/10-gpu-rag-pipeline.png',
+    tags: ['Python', 'Neo4j', 'vLLM', 'FastAPI', 'React', 'Redis'],
+    accentTags: ['Neo4j', 'vLLM'],
+    budget: '₩70,000,000',
+    duration: { ko: '150일', en: '150 days', ja: '150日', th: '150 วัน' },
+    i18n: {
+      ko: {
+        title: '온프레미스 GPU Graph RAG AI 파이프라인',
+        desc: '대용량 사양 문서 처리 RAG 파이프라인. GPU 서버 세팅 + Neo4j 그래프 DB + vLLM 서빙 + React 대시보드. 문서 12건 처리, 위험 42건 감지, 신뢰도 87%.',
+      },
+      en: {
+        title: 'On-Premise GPU Graph RAG AI Pipeline',
+        desc: 'RAG pipeline for large-scale specification document processing. GPU server setup + Neo4j graph DB + vLLM serving + React dashboard. Processes 12 docs, detects 42 risks at 87% confidence.',
+      },
+      ja: {
+        title: 'オンプレミスGPU グラフRAG AIパイプライン',
+        desc: '大規模仕様書処理RAGパイプライン。GPUサーバー設定 + Neo4jグラフDB + vLLMサービング + Reactダッシュボード。12件処理、42件リスク検出、信頼度87%。',
+      },
+      th: {
+        title: 'ไปป์ไลน์ AI Graph RAG GPU แบบ On-Premise',
+        desc: 'ไปป์ไลน์ RAG สำหรับประมวลผลเอกสารข้อกำหนดขนาดใหญ่ ตั้งค่า GPU Server + Neo4j + vLLM + React Dashboard ประมวลผล 12 เอกสาร ตรวจจับ 42 ความเสี่ยง ความเชื่อมั่น 87%',
+      },
+    },
+  },
+];
+
+const I18N = {
+  ko: {
+    headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
+    statMvp: '하루에 만든 MVP',
+    statProposals: '프로젝트 총합',
+    statFocus: '핵심 분야',
+    sectionProjects: '프로젝트 포트폴리오',
+    sectionSkills: '기술 스택 & 연락처',
+    skillsTitle: '기술 스택',
+    contactTitle: '연락처',
+    locationTitle: '위치',
+    locationVal: '방콕, 태국 (원격 가능)',
+    bizTitle: '사업자',
+    bizVal: '법인사업자 + 개인사업자',
+    footerText: '❤️ 로 만든 포트폴리오 · Fullstack AI Developer · 2026',
+    budget: '예산',
+    duration: '기간',
+  },
+  en: {
+    headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
+    statMvp: 'MVPs in 1 Day',
+    statProposals: 'Total Proposals',
+    statFocus: 'Core Focus',
+    sectionProjects: 'Project Portfolio',
+    sectionSkills: 'Skills & Contact',
+    skillsTitle: 'Tech Stack',
+    contactTitle: 'Contact',
+    locationTitle: 'Location',
+    locationVal: 'Bangkok, Thailand (Remote OK)',
+    bizTitle: 'Business',
+    bizVal: 'Corporation + Individual Business',
+    footerText: 'Built with ❤️ — Fullstack AI Developer Portfolio · 2026',
+    budget: 'Budget',
+    duration: 'Duration',
+  },
+  ja: {
+    headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
+    statMvp: '1日で作ったMVP',
+    statProposals: '提案書総額',
+    statFocus: '専門分野',
+    sectionProjects: 'プロジェクトポートフォリオ',
+    sectionSkills: '技術スタック & 連絡先',
+    skillsTitle: '技術スタック',
+    contactTitle: '連絡先',
+    locationTitle: '所在地',
+    locationVal: 'バンコク、タイ（リモート可）',
+    bizTitle: 'ビジネス',
+    bizVal: '法人 + 個人事業主',
+    footerText: '❤️ で作ったポートフォリオ · Fullstack AI Developer · 2026',
+    budget: '予算',
+    duration: '期間',
+  },
+  th: {
+    headerSubtitle: 'React · Next.js · Node.js · Cloudflare Workers · Gemini AI',
+    statMvp: 'MVP ใน 1 วัน',
+    statProposals: 'ยอดรวมข้อเสนอ',
+    statFocus: 'ความเชี่ยวชาญ',
+    sectionProjects: 'ผลงานโครงการ',
+    sectionSkills: 'ทักษะ & ติดต่อ',
+    skillsTitle: 'เทคโนโลยี',
+    contactTitle: 'ติดต่อ',
+    locationTitle: 'ที่ตั้ง',
+    locationVal: 'กรุงเทพฯ, ไทย (ทำงานระยะไกลได้)',
+    bizTitle: 'ธุรกิจ',
+    bizVal: 'นิติบุคคล + บุคคลธรรมดา',
+    footerText: 'สร้างด้วย ❤️ — Fullstack AI Developer Portfolio · 2026',
+    budget: 'งบประมาณ',
+    duration: 'ระยะเวลา',
+  },
+};
+
+let currentLang = 'ko';
+let currentProject = null;
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', ['ko','en','ja','th'][i] === lang);
+  });
+  updateUI();
+}
+
+function updateUI() {
+  const t = I18N[currentLang];
+  document.getElementById('header-subtitle').textContent = t.headerSubtitle;
+  document.getElementById('stat-mvp').textContent = t.statMvp;
+  document.getElementById('stat-proposals').textContent = t.statProposals;
+  document.getElementById('stat-focus').textContent = t.statFocus;
+  document.getElementById('section-projects').textContent = t.sectionProjects;
+  document.getElementById('section-skills').textContent = t.sectionSkills;
+  document.getElementById('skills-title').textContent = t.skillsTitle;
+  document.getElementById('contact-title').textContent = t.contactTitle;
+  document.getElementById('location-title').textContent = t.locationTitle;
+  document.getElementById('location-val').textContent = t.locationVal;
+  document.getElementById('biz-title').textContent = t.bizTitle;
+  document.getElementById('biz-val').textContent = t.bizVal;
+  document.getElementById('footer-text').textContent = t.footerText;
+  renderProjects();
+  if (currentProject !== null) updateModal(currentProject);
+}
+
+function renderProjects() {
+  const t = I18N[currentLang];
+  const grid = document.getElementById('projects-grid');
+  grid.innerHTML = PROJECTS.map(p => {
+    const info = p.i18n[currentLang];
+    const tagsHtml = p.tags.map(tag => {
+      const cls = p.accentTags.includes(tag) ? 'tag accent' : 'tag';
+      return `<span class="${cls}">${tag}</span>`;
+    }).join('');
+    return `
+      <div class="project-card" onclick="openModal(${p.id - 1})">
+        <img class="project-img" src="${p.img}" alt="${info.title}" loading="lazy">
+        <div class="project-body">
+          <div class="project-number">PROJECT ${p.id}</div>
+          <div class="project-title">${info.title}</div>
+          <div class="project-desc">${info.desc}</div>
+          <div class="project-tags">${tagsHtml}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function openModal(idx) {
+  currentProject = idx;
+  updateModal(idx);
+  document.getElementById('modal').classList.add('open');
+}
+
+function updateModal(idx) {
+  const p = PROJECTS[idx];
+  const t = I18N[currentLang];
+  const info = p.i18n[currentLang];
+  document.getElementById('modal-img').src = p.img;
+  document.getElementById('modal-num').textContent = `PROJECT ${p.id}`;
+  document.getElementById('modal-title').textContent = info.title;
+  document.getElementById('modal-desc').textContent = info.desc;
+  document.getElementById('modal-tags').innerHTML = p.tags.map(tag => {
+    const cls = p.accentTags.includes(tag) ? 'tag accent' : 'tag';
+    return `<span class="${cls}">${tag}</span>`;
+  }).join('');
+  document.getElementById('modal-meta').innerHTML = '';
+}
+
+function closeModal(e) {
+  if (e === null || e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    currentProject = null;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal(null);
+});
+
+// Init
+renderProjects();
+</script>
+</body>
+</html>
